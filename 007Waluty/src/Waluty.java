@@ -57,6 +57,7 @@ public class Waluty extends JFrame {
 	int iDzien;
 	static String szukanaData = new String(getTodayDate());
 	static String szukanaData2 = new String("");
+	String cos = "cos";
 
 	double kursWybranej;
 	int indexWybranej;
@@ -474,7 +475,6 @@ public class Waluty extends JFrame {
 		tZWalutami[2] = usdCurrency.rates[7].mid;
 		tZWalutami[3] = usdCurrency.rates[10].mid;
 		tZWalutami[4] = usdCurrency.rates[9].mid;
-
 
 		for (int i = 0; i <= 4; i++) {
 			tLabeli[i].setText("" + round(1 / tZWalutami[i]));
