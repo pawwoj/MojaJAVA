@@ -58,6 +58,8 @@ public class Waluty extends JFrame {
 	static String szukanaData = new String(getTodayDate());
 	static String szukanaData2 = new String("");
 	String cos = "cos";
+	String cos2 = "cos";
+	String cos3 = "cos";
 
 	double kursWybranej;
 	int indexWybranej;
