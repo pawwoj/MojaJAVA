@@ -5,5 +5,7 @@ public class Figury {
 		// TODO Auto-generated method stub
 
 	}
-
+public void a() {
+	
+}
 }
