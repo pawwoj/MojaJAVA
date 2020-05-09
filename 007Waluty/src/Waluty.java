@@ -354,7 +354,8 @@ public class Waluty extends JFrame {
 		try {
 			String url = "jdbc:mysql://serwer1936875.home.pl/31886298_pw?useSSL=false";
 			String user = "31886298_pw";
-			String password = "Kloda123";
+			// ######################### HASLO ######################
+			String password = "";
 
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url, user, password);
