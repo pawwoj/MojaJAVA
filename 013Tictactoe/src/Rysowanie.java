@@ -17,12 +17,27 @@ public class Rysowanie extends JPanel {
 	void drawO(Graphics g2) {
 		Graphics2D o2d = (Graphics2D) g2;
 		// System.out.println( (int)Tictactoe.getTabPoint(1).getX());
-	//	o2d.drawOval(25,25 , 50,50);
+		// o2d.drawOval(25,25 , 50,50);
 		for (int i = 0; i < 5; i++) {
-			if (!(Tictactoe.getTabPoint(i) == null)) {
-				o2d.drawOval((int) Tictactoe.getTabPoint(i).getX(), (int) Tictactoe.getTabPoint(i).getY(), 50,50);
-			//	o2d.drawOval((int) Tictactoe.getTabPoint(i).getX() - 30, (int) Tictactoe.getTabPoint(i).getY() - 50, 50,
-			//			50);
+			if (!(Tictactoe.getTabPointO(i) == null)) {
+				o2d.drawOval((int) Tictactoe.getTabPointO(i).getX(), (int) Tictactoe.getTabPointO(i).getY(), 50, 50);
+				// o2d.drawOval((int) Tictactoe.getTabPoint(i).getX() - 30, (int)
+				// Tictactoe.getTabPoint(i).getY() - 50, 50,
+				// 50);
+			}
+		}
+	}
+
+	void drawX(Graphics g2) {
+		Graphics2D x2d = (Graphics2D) g2;
+
+		for (int i = 0; i < 5; i++) {
+			if (!(Tictactoe.getTabPointX(i) == null)) {
+				x2d.drawLine((int) Tictactoe.getTabPointX(i).getX(), (int) Tictactoe.getTabPointX(i).getY(),
+						(int) Tictactoe.getTabPointX(i).getX() + 50, (int) Tictactoe.getTabPointX(i).getY() + 50);
+				x2d.drawLine((int) Tictactoe.getTabPointX(i).getX(), (int) Tictactoe.getTabPointX(i).getY() + 50,
+						(int) Tictactoe.getTabPointX(i).getX() + 50, (int) Tictactoe.getTabPointX(i).getY());
+
 			}
 		}
 	}
@@ -31,5 +46,6 @@ public class Rysowanie extends JPanel {
 		super.paint(g2);
 		liniePola(g2);
 		drawO(g2);
+		drawX(g2);
 	}
 }

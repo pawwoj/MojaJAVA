@@ -19,13 +19,19 @@ public class Tictactoe implements MouseListener {
 
 //	static Point tabPoint[] = new Point[500];
 
-	static Point tabPoint[] = { null, null, null, null, null };
+	static Point tabPointO[] = { null, null, null, null, null };
+	static Point tabPointX[] = { null, null, null, null, null };
 
-	public static Point getTabPoint(int i) {
-		return tabPoint[i];
+	public static Point getTabPointO(int i) {
+		return tabPointO[i];
+	}
+	
+	public static Point getTabPointX(int i) {
+		return tabPointX[i];
 	}
 
 	int postawienie = 0;
+	boolean terazO = true;
 
 	Rysowanie rys = new Rysowanie();
 	JFrame frame = new JFrame();
@@ -58,7 +64,16 @@ public class Tictactoe implements MouseListener {
 
 		// TODO Auto-generated method stub
 		System.out.println(e.getX() + " - " + e.getY());
-		sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()));
+		if (terazO) {
+		sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointO);
+		terazO = false;
+		}
+		
+		else if(!terazO) {
+			postawienie--;
+			sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointX);
+			terazO= true;
+		}
 
 		frame.revalidate();
 		frame.repaint();
@@ -93,10 +108,10 @@ public class Tictactoe implements MouseListener {
 
 	}
 
-	public void sprawdzenieCzyZajete(Point p) {
-		for (Point pt : tabPoint) {
+	public void sprawdzenieCzyZajete(Point p, Point tab[]) {
+		for (Point pt : tab) {
 			if (pt == null) {
-				tabPoint[postawienie] = p;
+				tab[postawienie] = p;
 				postawienie++;
 
 				System.out.println(postawienie);
@@ -107,6 +122,10 @@ public class Tictactoe implements MouseListener {
 			}
 		}
 	}
+	
+	PointS p;
+
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
