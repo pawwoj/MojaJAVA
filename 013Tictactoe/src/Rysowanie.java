@@ -16,14 +16,11 @@ public class Rysowanie extends JPanel {
 
 	void drawO(Graphics g2) {
 		Graphics2D o2d = (Graphics2D) g2;
-		// System.out.println( (int)Tictactoe.getTabPoint(1).getX());
-		// o2d.drawOval(25,25 , 50,50);
+
 		for (int i = 0; i < 5; i++) {
 			if (!(Tictactoe.getTabPointO(i) == null)) {
 				o2d.drawOval((int) Tictactoe.getTabPointO(i).getX(), (int) Tictactoe.getTabPointO(i).getY(), 50, 50);
-				// o2d.drawOval((int) Tictactoe.getTabPoint(i).getX() - 30, (int)
-				// Tictactoe.getTabPoint(i).getY() - 50, 50,
-				// 50);
+
 			}
 		}
 	}

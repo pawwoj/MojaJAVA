@@ -15,9 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class Tictactoe implements MouseListener {
-	static int tX;
-
-//	static Point tabPoint[] = new Point[500];
 
 	static Point tabPointO[] = { null, null, null, null, null };
 	static Point tabPointX[] = { null, null, null, null, null };
@@ -25,7 +22,7 @@ public class Tictactoe implements MouseListener {
 	public static Point getTabPointO(int i) {
 		return tabPointO[i];
 	}
-	
+
 	public static Point getTabPointX(int i) {
 		return tabPointX[i];
 	}
@@ -65,14 +62,14 @@ public class Tictactoe implements MouseListener {
 		// TODO Auto-generated method stub
 		System.out.println(e.getX() + " - " + e.getY());
 		if (terazO) {
-		sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointO);
-		terazO = false;
+			sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointO);
+			terazO = false;
 		}
-		
-		else if(!terazO) {
+
+		else if (!terazO) {
 			postawienie--;
 			sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointX);
-			terazO= true;
+			terazO = true;
 		}
 
 		frame.revalidate();
@@ -107,6 +104,16 @@ public class Tictactoe implements MouseListener {
 		return p;
 
 	}
+	
+	public void sprawdzCzyWygrana(Point tab[]) {
+		for (int i = 0; i < 5; i++) {
+			int x=0;
+			int y=0;
+			
+			
+		}
+		
+	}
 
 	public void sprawdzenieCzyZajete(Point p, Point tab[]) {
 		for (Point pt : tab) {
@@ -122,10 +129,6 @@ public class Tictactoe implements MouseListener {
 			}
 		}
 	}
-	
-	PointS p;
-
-	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
