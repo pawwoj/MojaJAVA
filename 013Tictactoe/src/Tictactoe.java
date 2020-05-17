@@ -37,6 +37,7 @@ public class Tictactoe implements MouseListener {
 	public Tictactoe() {
 
 		initComponents();
+		czyjaKolej();
 	}
 
 	public void initComponents() {
@@ -60,16 +61,17 @@ public class Tictactoe implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 
 		// TODO Auto-generated method stub
-		System.out.println(e.getX() + " - " + e.getY());
+		// System.out.println(e.getX() + " - " + e.getY());
 		if (terazO) {
-			sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointO);
-			terazO = false;
+
+			wstawPintWTab(kalibracjaPointa(e.getPoint()), tabPointO, tabPointX);
+
 		}
 
 		else if (!terazO) {
-			postawienie--;
-			sprawdzenieCzyZajete(kalibracjaPointa(e.getPoint()), tabPointX);
-			terazO = true;
+
+			wstawPintWTab(kalibracjaPointa(e.getPoint()), tabPointX, tabPointO);
+
 		}
 
 		frame.revalidate();
@@ -81,22 +83,22 @@ public class Tictactoe implements MouseListener {
 		int x = (int) p.getX();
 		int y = (int) p.getY();
 
-		if (x < 130)
+		if (x <= 130)
 			x = 25;
 
 		if (130 < x && x < 230)
 			x = 125;
 
-		else if (x > 230)
+		else if (x >= 230)
 			x = 225;
 
-		if (y < 110)
+		if (y <= 110)
 			y = 25;
 
 		if (110 < y && y < 210)
 			y = 125;
 
-		else if (y > 210)
+		else if (y >= 210)
 			y = 225;
 
 		p.setLocation(x, y);
@@ -104,30 +106,63 @@ public class Tictactoe implements MouseListener {
 		return p;
 
 	}
-	
+
 	public void sprawdzCzyWygrana(Point tab[]) {
 		for (int i = 0; i < 5; i++) {
-			int x=0;
-			int y=0;
-			
-			
+			int x = 0;
+			int y = 0;
+
 		}
-		
+
 	}
 
-	public void sprawdzenieCzyZajete(Point p, Point tab[]) {
-		for (Point pt : tab) {
-			if (pt == null) {
-				tab[postawienie] = p;
-				postawienie++;
+	public void wstawPintWTab(Point p, Point tab[], Point tab2[]) {
+		if (sprawdzCzyZajete(p, tab, tab2)) {
+			tab[postawienie] = p;
 
-				System.out.println(postawienie);
-				break;
-			} else if (pt.equals(p)) {
-				System.out.println("To pole jest zajete");
-				break;
+			if (terazO) {
+				postawienie++;
+				terazO = false;
+				czyjaKolej();
+
+			} else if (!terazO) {
+				terazO = true;
+				czyjaKolej();
+
 			}
 		}
+
+		System.out.println(postawienie);
+		czyjaKolej();
+
+	}
+
+	public boolean sprawdzCzyZajete(Point p, Point tab[], Point tab2[]) {
+		boolean wolnePole = true;
+		for (Point pt : tab) {
+			if (pt != null) {
+				if (pt.equals(p)) {
+					System.out.println("To pole jest zajete");
+					wolnePole = false;
+				}
+			}
+		}
+		for (Point pt2 : tab2) {
+			if (pt2 != null) {
+				if (pt2.equals(p)) {
+					System.out.println("To pole jest zajete");
+					wolnePole = false;
+				}
+			}
+		}
+		return wolnePole;
+	}
+
+	public void czyjaKolej() {
+		if (terazO)
+			System.out.println("Teraz: O");
+		if (!terazO)
+			System.out.println("Teraz: X");
 	}
 
 	@Override
