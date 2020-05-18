@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class Tictactoe implements MouseListener {
+	int wygrX = 0;
+	int wygrY = 0;
 
 	static Point tabPointO[] = { null, null, null, null, null };
 	static Point tabPointX[] = { null, null, null, null, null };
@@ -61,21 +63,23 @@ public class Tictactoe implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 
 		// TODO Auto-generated method stub
-		// System.out.println(e.getX() + " - " + e.getY());
 		if (terazO) {
-
 			wstawPintWTab(kalibracjaPointa(e.getPoint()), tabPointO, tabPointX);
-
 		}
 
 		else if (!terazO) {
-
 			wstawPintWTab(kalibracjaPointa(e.getPoint()), tabPointX, tabPointO);
-
 		}
 
 		frame.revalidate();
 		frame.repaint();
+
+		if (sprawdzCzyWygrana(tabPointO)) {
+			System.out.println("WYGRYWA O");
+		}
+		if (sprawdzCzyWygrana(tabPointX)) {
+			System.out.println("WYGRYWA X");
+		}
 
 	}
 
@@ -83,22 +87,22 @@ public class Tictactoe implements MouseListener {
 		int x = (int) p.getX();
 		int y = (int) p.getY();
 
-		if (x <= 130)
+		if (x <= 110)
 			x = 25;
 
-		if (130 < x && x < 230)
+		if (110 < x && x < 210)
 			x = 125;
 
-		else if (x >= 230)
+		else if (x >= 210)
 			x = 225;
 
-		if (y <= 110)
+		if (y <= 130)
 			y = 25;
 
-		if (110 < y && y < 210)
+		if (130 < y && y < 230)
 			y = 125;
 
-		else if (y >= 210)
+		else if (y >= 230)
 			y = 225;
 
 		p.setLocation(x, y);
@@ -107,12 +111,92 @@ public class Tictactoe implements MouseListener {
 
 	}
 
-	public void sprawdzCzyWygrana(Point tab[]) {
+	public boolean sprawdzCzyWygrana(Point tab[]) {
+
+		boolean wygrana = false;
+
 		for (int i = 0; i < 5; i++) {
 			int x = 0;
 			int y = 0;
+			for (int j = i; j < 5; j++) {
+				if ((!(tab[i] == null) && !(tab[j] == null) && tab[i].getX() == tab[j].getX())) {
+					x++;
+					if (x == 3) {
+						wygrX = (int) tab[i].getX();
+						System.out.println("X " + x);
+						System.out.println("wygranana osi X");
+						wygrana = true;
+						return wygrana;
+					}
+				}
+				if ((!(tab[i] == null) && !(tab[j] == null) && tab[i].getY() == tab[j].getY())) {
+					y++;
+					if (y == 3) {
+						wygrY = (int) tab[i].getY();
+						System.out.println("Y " + y);
+						System.out.println("wygranana osi Y");
+						wygrana = true;
+						return wygrana;
+					}
+
+				}
+
+			}
 
 		}
+		// skasy \
+		int iskosd = 0;
+		for (int i = 0; i < 5; i++) {
+
+			if ((!(tab[i] == null) && (int) tab[i].getX() == 25 && (int) tab[i].getY() == 25)) {
+				iskosd++;
+
+			}
+			if ((!(tab[i] == null) && (int) tab[i].getX() == 125 && (int) tab[i].getY() == 125)) {
+				iskosd++;
+
+			}
+			if ((!(tab[i] == null) && (int) tab[i].getX() == 225 && (int) tab[i].getY() == 225)) {
+				iskosd++;
+
+			}
+			if (iskosd == 3) {
+				wygrana = true;
+				System.out.println("Wysrany skos gd");
+				return wygrana;
+
+			}
+
+		}
+
+		// skasy /
+		int iskosg = 0;
+		for (int i = 0; i < 5; i++) {
+
+			if ((!(tab[i] == null) && (int) tab[i].getX() == 225 && (int) tab[i].getY() == 25)) {
+				iskosg++;
+				System.out.println("iskos " + iskosg);
+
+			}
+			if ((!(tab[i] == null) && (int) tab[i].getX() == 125 && (int) tab[i].getY() == 125)) {
+				iskosg++;
+				System.out.println("iskos " + iskosg);
+
+			}
+			if ((!(tab[i] == null) && (int) tab[i].getX() == 25 && (int) tab[i].getY() == 225)) {
+				iskosg++;
+				System.out.println("iskos " + iskosg);
+
+			}
+			if (iskosg == 3) {
+				wygrana = true;
+				System.out.println("Wysrany skos dg");
+				return wygrana;
+
+			}
+
+		}
+		return wygrana;
 
 	}
 
@@ -121,11 +205,12 @@ public class Tictactoe implements MouseListener {
 			tab[postawienie] = p;
 
 			if (terazO) {
-				postawienie++;
+
 				terazO = false;
 				czyjaKolej();
 
 			} else if (!terazO) {
+				postawienie++;
 				terazO = true;
 				czyjaKolej();
 
