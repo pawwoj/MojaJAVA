@@ -9,6 +9,37 @@ import java.sql.Statement;
 
 public class IOdoBazy {
 //	public void zapiszDoBazy() {
+
+	public int kodProduktu;
+	public String nazwaProduktu= "";
+	public String jednostkaProduktu= "";
+	public int getKodProduktu() {
+		return kodProduktu;
+	}
+	public void setKodProduktu(int kodProduktu) {
+		this.kodProduktu = kodProduktu;
+	}
+	public String getJednostkaProduktu() {
+		return jednostkaProduktu;
+	}
+	public void setJednostkaProduktu(String jednostkaProduktu) {
+		this.jednostkaProduktu = jednostkaProduktu;
+	}
+	public String getOpisProduktu() {
+		return opisProduktu;
+	}
+	public void setOpisProduktu(String opisProduktu) {
+		this.opisProduktu = opisProduktu;
+	}
+
+	public String opisProduktu= "";
+	
+	public String getNazwaProduktu() {
+		return nazwaProduktu;
+	}
+	public void setNazwaProduktu(String nazwaProduktu) {
+		this.nazwaProduktu = nazwaProduktu;
+	}
 	public void zapiszDoBazySkladnik(int kodskladnik2, String nazwa, String jednostka, String opis,
 			String ktoodpowiada) {
 
@@ -104,4 +135,34 @@ public class IOdoBazy {
 		}
 
 	}
+	
+	public void wczytajProdukZPodanymKodem(int kod) {
+
+		try {
+			Connection conne = Laczeniezbazadanych.Connect();
+			Statement stmt;
+			stmt = conne.createStatement(); 
+			ResultSet rss = stmt.executeQuery("SELECT * FROM `bom2` WHERE `kodbom2` =" + kod);
+					
+				
+			System.out.println("z bazy danych");
+			while (rss.next()) {
+				setKodProduktu(rss.getInt(1));
+				setNazwaProduktu(rss.getString(2));
+				setJednostkaProduktu(rss.getString(3));
+				setOpisProduktu(rss.getString(4));
+				System.out.println(rss.getInt(1) + "  " + rss.getString(2) + "  " 
+			+ rss.getString(3) + "  " + rss.getString(4));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+//	SELECT * FROM `bom2` WHERE `kodbom2` =10
 }
+
+

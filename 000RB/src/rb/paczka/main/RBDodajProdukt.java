@@ -16,14 +16,16 @@ public class RBDodajProdukt extends JPanel {
 	JComboBox coBoxJednostka = new JComboBox(strJednostki);
 	JButton butWiecej = new JButton("Wiecej");
 	JButton butTestbaza = new JButton("testbaza");
-	JTextField[] textFKody = { new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
-			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
-			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
-			new JTextField(""), new JTextField(""), new JTextField("") };
-	JTextField[] textFIlosci = { new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
-			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
-			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
-			new JTextField(""), new JTextField(""), new JTextField("") };
+	JTextField[] textFKody = { new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField("") };
+	JTextField[] textFIlosci = { new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""), new JTextField(""),
+			new JTextField("") };
 	JTextArea textAOpis = new JTextArea("Wpisz opis");
 	JButton butZapisz = new JButton("Zapisz");
 	JButton butWstecz = new JButton("Wstecz");
@@ -65,7 +67,7 @@ public class RBDodajProdukt extends JPanel {
 
 					if (!(textFKody[j].getText().equals("")) && !(textFIlosci[j].getText().equals(""))) {
 						System.out.println("sprawdza skladniki J= " + j);
-				//		System.out.println("skladniki J= " + j + "// bomKod : " + bomKod);
+						// System.out.println("skladniki J= " + j + "// bomKod : " + bomKod);
 						int bomKod = Integer.parseInt(textFKod.getText());
 						int sklKod = Integer.parseInt(textFKody[j].getText());
 						int sklIlosc = Integer.parseInt(textFIlosci[j].getText());
@@ -77,13 +79,13 @@ public class RBDodajProdukt extends JPanel {
 			}
 
 		});
-		
+
 		butTestbaza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IOdoBazy zapiszdobazy = new IOdoBazy();
 
-zapiszdobazy.wczytajProdukISkladniki();
-				
+				zapiszdobazy.wczytajProdukISkladniki();
+
 			}
 
 		});
