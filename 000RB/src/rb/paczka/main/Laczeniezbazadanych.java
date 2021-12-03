@@ -13,7 +13,7 @@ public class Laczeniezbazadanych {
 		try {
 			String url = "jdbc:mysql://serwer1936875.home.pl/31886298_rb?useSSL=false";
 			String user = "31886298_rb";
-			String password = "RBlatarka123";
+			String password = "password";
 
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url, user, password);
